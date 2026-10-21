@@ -23,7 +23,7 @@ jobs:
       # ------------------------------
 
       - name: Revisar formato del HTML
-        run: npm exec prettier -- --check .
+        run: npm run format:check
 
   # TRABAJO 2: El CD (Publicar la página)
   deploy:
