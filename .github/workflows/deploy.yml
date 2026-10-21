@@ -1,0 +1,40 @@
+name: CI/CD Pagina Web
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  # TRABAJO 1: El CI (Revisión de código)
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+      - name: Revisar formato del HTML
+        run: npx prettier --check .
+
+  # TRABAJO 2: El CD (Publicar la página)
+  deploy:
+    needs: build-and-test # Solo se ejecuta si la revisión pasó
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+      - name: Configurar Pages
+        uses: actions/configure-pages@v4
+      - name: Subir pagina
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."
+      - name: Desplegar
+        id: deployment
+        uses: actions/deploy-pages@v4
