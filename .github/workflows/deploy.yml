@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   # TRABAJO 1: El CI (Revisión de código)
-    build-and-test:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: Descargar codigo
