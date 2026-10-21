@@ -11,11 +11,17 @@ permissions:
 
 jobs:
   # TRABAJO 1: El CI (Revisión de código)
-  build-and-test:
+    build-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: Descargar codigo
         uses: actions/checkout@v4
+
+      # --- AGREGA ESTE PASO NUEVO ---
+      - name: Instalar dependencias
+        run: npm install
+      # ------------------------------
+
       - name: Revisar formato del HTML
         run: npx prettier --check .
 
