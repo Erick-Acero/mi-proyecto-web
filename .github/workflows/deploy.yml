@@ -24,7 +24,7 @@ jobs:
       - name: Instalar dependencias
         run: npm install
 
-      # --- AGREGA ESTE PASO NUEVO ---
+      # --- Dar permisos de ejecucion a Prettier ---
       - name: Dar permisos de ejecucion a Prettier
         run: chmod +x node_modules/.bin/prettier
       # ------------------------------
